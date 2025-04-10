@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ex2</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <a href="/">Back to Home</a>
+  <h1>Visited Countries Form</h1>
+  <form id="ex2-form">
+    <div>
+      <label for="name">Your Name:</label>
+      <input type="text" id="name" name="name" required />
+    </div>
+
+    <div>
+      <label for="countries">Countries Visited (comma separated):</label>
+      <input type="text" id="countries" name="countries" required />
+    </div>
+
+    <button type="submit">Submit</button>
+  </form>
+
+  <h2>Output:</h2>
+  <p id="output"></p>
+
+  <script>
+    document.getElementById('ex2-form').addEventListener('submit', async (e) => {
+      e.preventDefault(); // Prevent the default form submission
+
+      const name = document.getElementById('name').value;
+      const countries = document.getElementById('countries').value.split(',');
+
+      // Send data to the server using fetch
+      const response = await fetch('/api/countries', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ name, countries }),
+      });
+
+      const data = await response.json();
+      document.getElementById('output').textContent = data.message;
+    });
+  </script>
+</body>
+</html>

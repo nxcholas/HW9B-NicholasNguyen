@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/styles.css">
+  <title>EX3</title>
+  <script>
+    function submitArticle(event) {
+      event.preventDefault(); // Prevent page reload
+
+      const title = document.getElementById('title').value;
+      const content = document.getElementById('content').value;
+
+      // Make the POST request to the /articles route
+      fetch('/articles', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: `title=${title}&content=${content}`,
+      })
+      .then(response => response.text())
+      .then(data => {
+        // Update the result section with the response message
+        document.getElementById('result').innerHTML = data;
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+    }
+  </script>
+</head>
+<body>
+  <a href="/">Back to Home</a>
+  <h1>Submit a New Article</h1>
+  <form id="articleForm" onsubmit="submitArticle(event)">
+    <label for="title">Article Title:</label>
+    <input type="text" id="title" required><br><br>
+    
+    <label for="content">Article Content:</label>
+    <textarea id="content" required></textarea><br><br>
+    
+    <button type="submit">Submit Article</button>
+  </form>
+
+  <h2 id="result"></h2> 
+</body>
+</html>
