@@ -61,4 +61,4 @@ jobs:
           app-name: 'HW9B-NicholasNguyen'
           slot-name: 'Production'
           package: .
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_BF4496117C7E4EFD89E61A0CCD43F89C }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_24A7FB2FFF184AFBA0470A5E440A5E81 }}
