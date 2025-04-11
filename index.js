@@ -2,7 +2,7 @@ const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser'); // Add body-parser for JSON
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000; // Use dynamic port for Azure
 
 // Middleware to parse the body of POST requests
 app.use(express.urlencoded({ extended: true }));
