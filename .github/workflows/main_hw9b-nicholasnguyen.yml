@@ -40,6 +40,12 @@ jobs:
     environment:
       name: "Production"
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+<<<<<<< HEAD
+=======
+    permissions:
+      id-token: write #This is required for requesting the JWT
+      contents: read #This is required for actions/checkout
+>>>>>>> ae496e3457022587d14dbe6a21120818867b3217
 
     steps:
       - name: Download artifact from build job
@@ -49,15 +55,31 @@ jobs:
 
       - name: Unzip artifact for deployment
         run: unzip release.zip
+<<<<<<< HEAD
 
       - name: List files after unzipping (optional for debugging)
         run: ls -al
 
       - name: Deploy to Azure Web App
+=======
+      
+      - name: Login to Azure
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_DBC16D05E6D741A6A8B241DC799C9712 }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_CF6CC346625C4A0C83952DEC74D5A9C2 }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_4BF2DD5E89934CD98AAED185E7D3C50C }}
+
+      - name: 'Deploy to Azure Web App'
+>>>>>>> ae496e3457022587d14dbe6a21120818867b3217
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
         with:
           app-name: "HW9B-NicholasNguyen"
           slot-name: "Production"
           package: .
+<<<<<<< HEAD
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_24A7FB2FFF184AFBA0470A5E440A5E81 }}
+=======
+          
+>>>>>>> ae496e3457022587d14dbe6a21120818867b3217
